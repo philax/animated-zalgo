@@ -123,8 +123,8 @@ function HeComes(container) {
     this.daemon.start();
 }
 
-HeComes.prototype.additions = ['strong', 'em', 'sub', 'sup'];
-HeComes.prototype.faces = ['Comic Sans', 'Alial', 'Georgia', 'Papyrus', 'Mono'];
+HeComes.prototype.additions = ['strong'] // ['strong', 'em', 'sub', 'sup'];
+HeComes.prototype.faces = ['Papyrus'] // ['Comic Sans', 'Alial', 'Georgia', 'Papyrus', 'Mono'];
 HeComes.prototype.zalgo = [zalgoMiddle, zalgoDown, zalgoUp];
 
 HeComes.prototype.fuckUp = function() {
