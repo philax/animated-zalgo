@@ -123,8 +123,8 @@ function HeComes(container) {
     this.daemon.start();
 }
 
-HeComes.prototype.additions = ['strong'] // ['strong', 'em', 'sub', 'sup'];
-HeComes.prototype.faces = ['Papyrus'] // ['Comic Sans', 'Alial', 'Georgia', 'Papyrus', 'Mono'];
+HeComes.prototype.additions = ['em']; // ['strong', 'em', 'sub', 'sup'];
+HeComes.prototype.faces = ['Gloria Hallelujah']; // ['Comic Sans', 'Alial', 'Georgia', 'Papyrus', 'Mono'];
 HeComes.prototype.zalgo = [zalgoMiddle, zalgoDown, zalgoUp];
 
 HeComes.prototype.fuckUp = function() {
@@ -134,21 +134,23 @@ HeComes.prototype.fuckUp = function() {
 	var c = this.originalText[i];
 
 	// upper or lower case
-	c = Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase();
+	// c = Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase();
 
 	// added tags
 	for (var j = 0; j < this.additions.length; j++)
-	    c = Math.random() > 0.5 ?
+	    c = Math.random() > 0 ?
 	        '<' + this.additions[j] + '>' + c + '</' + this.additions[j] + '>' : c;
 
 	// zalgo
 	for (var j = 0; j < this.zalgo.length; j++)
-	    for (var k = 0; k < Math.floor(Math.random()*3) + 1; k++)
+	    for (var k = 0; k < Math.floor(Math.random()*30) + 1; k++)
 		c += this.zalgo[j][Math.floor(Math.random()*this.zalgo[j].length)];
 
 	// font color
-	var color = Math.random() < 0.2 ? 'color="#700"' : '';
-
+	if (c.match(/[^\S\r\n]/)){	
+		var color = Math.random() < 0.3 ? 'color="#700"' : '';
+	}
+	else {var color = "lightgray";}
 	// font face and color
 	c = '<font face="' +
 	     this.faces[Math.floor(Math.random()*this.faces.length)] +
@@ -169,6 +171,7 @@ window.onload = function(e) {
     containers = document.getElementsByClassName('hecomes');
 
     for (var i = 0; i < containers.length; i++) {
+	
 	heComesInstances.push(new HeComes(containers[i]));
     }
 };
